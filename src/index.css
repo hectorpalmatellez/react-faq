@@ -10,6 +10,7 @@ body {
   padding: 18px;
 }
 .single-panel {
+  position: relative;
   background-color: rgb(255, 255, 255);
   padding: 12px;
   margin-bottom: 10px;
@@ -17,10 +18,11 @@ body {
 .question-date {
   color: rgb(137, 154, 166);
 }
-.question-text {
+.question-container {
   color: rgb(0, 0, 0);
   cursor: pointer;
   font-size: 1rem;
+  transition: .4s;
 }
 .question-author {
   color: rgb(137, 154, 166);
@@ -31,4 +33,16 @@ body {
 }
 .question-answer.is-visible {
   display: block;
+}
+.collapse-state-icon {
+  position: absolute;
+  right: 20px;
+  top: 20%;
+  transform: rotate(90deg);
+  font-family: 'Roboto';
+  font-weight: bold;
+  transition: .3s;
+}
+.single-panel.is-open .collapse-state-icon {
+  transform: rotate(-90deg);
 }

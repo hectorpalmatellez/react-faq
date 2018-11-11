@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import * as ApiService from '../services/apiService'
 import * as utils from '../utils'
 
@@ -29,13 +29,16 @@ class QuestionPanel extends Component {
   render() {
     return (
       ApiService.formattedData().map((result) =>
-        <div className="single-panel" key={result.question.id} data-action-id={getLastActionId(result)}>
-          <h2 className="question-text" onClick={this.toggleAnswer}>
-            <span className="question-author">{utils.getUserName(result.user_id)}</span>
-            {result.question.questionText}
-          </h2>
-          <h3 className="question-answer">{result.answer.answerText}</h3>
-        </div>
+        <Fragment key={result.question.id}>
+          <div className="single-panel" data-action-id={getLastActionId(result)}>
+            <span className="collapse-state-icon">></span>
+            <h2 className="question-container" onClick={this.toggleAnswer}>
+              <span className="question-author">{utils.getUserName(result.user_id)}</span>
+              <span className="question-text">{result.question.questionText}</span>
+            </h2>
+            <h3 className="question-answer">{result.answer.answerText}</h3>
+          </div>
+        </Fragment>
       )
     )
   }
