@@ -20,18 +20,14 @@ describe('<App/>', () => {
 
 describe('<QuestionPanel/>', () => {
   it('renders QuestionPanel', () => {
-    const wrap = shallow(
-      <QuestionPanel/>
-      )
+    const wrap = shallow(<QuestionPanel/>)
     expect(wrap.exists('.single-panel')).toEqual(true)
   })
 })
 
 describe('<Question/>', () => {
   it('renders Question', () => {
-    const wrap = shallow(
-      <Question/>
-      )
+    const wrap = shallow(<Question/>)
     expect(wrap.exists('.question-container')).toEqual(true)
   })
 
@@ -39,6 +35,11 @@ describe('<Question/>', () => {
     const testUser = 'user1'
     const wrap = shallow(<Question userName={testUser}/>)
     expect(wrap.find('.question-author').text()).toEqual('user1')
+  })
+  it('Question organization passes to DOM', () => {
+    const testOrg = 'NASA'
+    const wrap = shallow(<Question organization={testOrg}/>)
+    expect(wrap.find('.question-container').prop('data-org')).toEqual('nasa')
   })
 
   it('Question text passes to DOM', () => {

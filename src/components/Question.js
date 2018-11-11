@@ -11,6 +11,11 @@ class Question extends Component {
     }
   }
 
+  slugify = (str) => {
+    if (!str) return
+    return str.toLowerCase().replace(/ /, '-')
+  }
+
   toggleAnswer = (event) => {
     const parentPanel = event.target.closest('.single-panel')
     const respectiveAnswer = parentPanel.querySelector('.question-answer')
@@ -20,7 +25,7 @@ class Question extends Component {
 
   render() {
     return (
-      <h2 className="question-container" data-org={this.props.organization.toLowerCase().replace(/ /, '-')} onClick={this.toggleAnswer}>
+      <h2 className="question-container" data-org={this.slugify(this.props.organization)} onClick={this.toggleAnswer}>
         <span className="question-author">{this.props.userName}</span>
         <span className="question-text">{this.props.question}</span>
       </h2>
