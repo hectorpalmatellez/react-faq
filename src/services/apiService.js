@@ -5,9 +5,11 @@ import UsersSource from '../mock/users';
 const formattedData = () => {
   const result = QuestionsSource.map((question) => {
     const answer = AnswersSource.filter((a) => a.questionId === question.id).pop()
-    const user = question.creatorId
+    const user_id = question.creatorId
+    const user_org = UsersSource.filter((current_user) => current_user.id === user_id).pop().organization
     return {
-      user_id: user,
+      user_id: user_id,
+      user_organization: user_org,
       question: question,
       answer: answer
     }
