@@ -14,18 +14,26 @@ const getLastActionId = (result) => {
                     lastEditorId: lastEditorID,
                     submitterId: submitterID
                   }
+
 }
 
 class QuestionPanel extends Component {
+
+  toggleAnswer = (event) => {
+    const parentPanel = event.target.closest('.single-panel')
+    const respectiveAnswer = parentPanel.querySelector('.question-answer')
+    parentPanel.classList.toggle('is-open')
+    respectiveAnswer.classList.toggle('is-visible')
+  }
+
   render() {
     return (
       ApiService.formattedData().map((result) =>
         <div className="single-panel" key={result.question.id} data-action-id={getLastActionId(result)}>
-          <h5 className="user-name">
-            {utils.getUserName(result.user_id)}
-            <span></span>
-          </h5>
-          <h2 className="question-text">{result.question.questionText}</h2>
+          <h2 className="question-text" onClick={this.toggleAnswer}>
+            <span className="question-author">{utils.getUserName(result.user_id)}</span>
+            {result.question.questionText}
+          </h2>
           <h3 className="question-answer">{result.answer.answerText}</h3>
         </div>
       )

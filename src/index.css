@@ -11,13 +11,24 @@ body {
 }
 .single-panel {
   background-color: rgb(255, 255, 255);
-}
-.user-name {
-  color: rgb(137, 154, 166);
+  padding: 12px;
+  margin-bottom: 10px;
 }
 .question-date {
   color: rgb(137, 154, 166);
 }
 .question-text {
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-size: 1rem;
+}
+.question-author {
   color: rgb(137, 154, 166);
+  padding-right: 12px;
+}
+.question-answer {
+  display: none;
+}
+.question-answer.is-visible {
+  display: block;
 }
