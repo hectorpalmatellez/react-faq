@@ -8,6 +8,7 @@ Enzyme.configure({ adapter: new Adapter() })
 
 import App from './App'
 import QuestionPanel from './components/QuestionPanel'
+import Answer from './components/Answer'
 
 it('renders App', () => {
   const wrap = shallow(<App/>)
@@ -33,6 +34,18 @@ it('question panel has an answer', () => {
     <QuestionPanel/>
   )
   expect(wrap.exists('.question-answer')).toEqual(true)
+describe('<Answer/>', () => {
+  it('renders Answer', () => {
+    const wrap = shallow(
+      <Answer/>
+      )
+    expect(wrap.exists('.question-answer')).toEqual(true)
+  })
+  it('Answer prop passes to DOM', () => {
+    const testAnswer = 'test'
+    const wrap = shallow(<Answer text={testAnswer}/>)
+    expect(wrap.find('.question-answer').text()).toEqual('test')
+  })
 })
 
 it('renders a question with date', () => {

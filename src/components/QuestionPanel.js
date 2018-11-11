@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import Answer from './Question'
 import * as ApiService from '../services/apiService'
 import * as utils from '../utils'
 
@@ -36,7 +37,7 @@ class QuestionPanel extends Component {
               <span className="question-author">{utils.getUserName(result.user_id)}</span>
               <span className="question-text">{result.question.questionText}</span>
             </h2>
-            <h3 className="question-answer">{result.answer.answerText}</h3>
+            <Answer text={result.answer.answerText}/>
           </div>
         </Fragment>
       )
