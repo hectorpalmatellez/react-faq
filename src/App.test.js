@@ -8,32 +8,46 @@ Enzyme.configure({ adapter: new Adapter() })
 
 import App from './App'
 import QuestionPanel from './components/QuestionPanel'
+import Question from './components/Question'
 import Answer from './components/Answer'
 
-it('renders App', () => {
-  const wrap = shallow(<App/>)
-  expect(wrap.exists('.panel-container')).toEqual(true)
-});
-
-it('renders QuestionPanel', () => {
-  const wrap = shallow(
-    <QuestionPanel/>
-    )
-  expect(wrap.exists('.single-panel')).toEqual(true)
-});
-
-it('question panel has a question', () => {
-  const wrap = shallow(
-    <QuestionPanel/>
-  )
-  expect(wrap.exists('.question-text')).toEqual(true)
+describe('<App/>', () => {
+  it('renders App', () => {
+    const wrap = shallow(<App/>)
+    expect(wrap.exists('.panel-container')).toEqual(true)
+  })
 })
 
-it('question panel has an answer', () => {
-  const wrap = shallow(
-    <QuestionPanel/>
-  )
-  expect(wrap.exists('.question-answer')).toEqual(true)
+describe('<QuestionPanel/>', () => {
+  it('renders QuestionPanel', () => {
+    const wrap = shallow(
+      <QuestionPanel/>
+      )
+    expect(wrap.exists('.single-panel')).toEqual(true)
+  })
+})
+
+describe('<Question/>', () => {
+  it('renders Question', () => {
+    const wrap = shallow(
+      <Question/>
+      )
+    expect(wrap.exists('.question-container')).toEqual(true)
+  })
+
+  it('Question author passes to DOM', () => {
+    const testUser = 'user1'
+    const wrap = shallow(<Question userName={testUser}/>)
+    expect(wrap.find('.question-author').text()).toEqual('user1')
+  })
+
+  it('Question text passes to DOM', () => {
+    const testQuestion = 'Are you OK?'
+    const wrap = shallow(<Question question={testQuestion}/>)
+    expect(wrap.find('.question-text').text()).toEqual('Are you OK?')
+  })
+})
+
 describe('<Answer/>', () => {
   it('renders Answer', () => {
     const wrap = shallow(
@@ -48,9 +62,3 @@ describe('<Answer/>', () => {
   })
 })
 
-it('renders a question with date', () => {
-  const wrap = shallow(
-    <QuestionPanel/>
-  )
-  expect(wrap.exists('.question-modification-date')).toEqual(true)
-});

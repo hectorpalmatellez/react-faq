@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import Question from './Question'
 import Answer from './Question'
 import * as ApiService from '../services/apiService'
 import * as utils from '../utils'
@@ -33,10 +34,7 @@ class QuestionPanel extends Component {
         <Fragment key={result.question.id}>
           <div className="single-panel" data-action-id={getLastActionId(result)}>
             <span className="collapse-state-icon">></span>
-            <h2 className="question-container" onClick={this.toggleAnswer}>
-              <span className="question-author">{utils.getUserName(result.user_id)}</span>
-              <span className="question-text">{result.question.questionText}</span>
-            </h2>
+            <Question userName={utils.getUserName(result.user_id)} question={result.question.questionText}/>
             <Answer text={result.answer.answerText}/>
           </div>
         </Fragment>
